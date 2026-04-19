@@ -1,12 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export default function PhoneVerifyPage() {
+  return (
+    <Suspense>
+      <PhoneVerifyContent />
+    </Suspense>
+  );
+}
+
+function PhoneVerifyContent() {
   const router = useRouter();
   const params = useSearchParams();
   const phone = params.get("phone") ?? "";
