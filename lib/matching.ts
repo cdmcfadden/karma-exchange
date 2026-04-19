@@ -119,10 +119,10 @@ async function rerankWithClaude(
     .ranked;
 
   // Reorder candidates per Claude's ranking, attach why_match
-  return ranked
-    .map((r) => {
-      const c = candidates[r.idx];
-      return c ? { ...c, why_match: r.why_match } : null;
-    })
-    .filter((c): c is MatchCandidate => c !== null);
+  const results: MatchCandidate[] = [];
+  for (const r of ranked) {
+    const c = candidates[r.idx];
+    if (c) results.push({ ...c, why_match: r.why_match });
+  }
+  return results;
 }
