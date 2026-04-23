@@ -64,18 +64,20 @@ function PhoneVerifyContent() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-50 via-white to-rose-50 px-4">
-      <div className="w-full max-w-md">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-violet-700 mb-2">Check your texts</h1>
-          <p className="text-sm text-muted-foreground">
-            We sent a 6-digit code to <strong>{phone}</strong>
+    <main style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", padding: 16 }}>
+      <div className="nebula-bg" style={{ opacity: 0.4 }} />
+      <div className="starfield" style={{ opacity: 0.5 }} />
+      <div style={{ width: "100%", maxWidth: 420, position: "relative", zIndex: 1 }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <h1 className="font-display" style={{ fontSize: 32, color: "var(--brass-bright)", fontStyle: "italic", margin: 0 }}>Check your texts</h1>
+          <p style={{ fontSize: 13, color: "var(--text-dim)", marginTop: 8 }}>
+            We sent a 6-digit code to <strong style={{ color: "var(--brass)" }}>{phone}</strong>
           </p>
         </div>
 
-        <form onSubmit={handleVerify} className="space-y-4 bg-white p-6 rounded-xl shadow-sm border">
-          <div>
-            <label className="text-sm font-medium mb-2 block">Verification code</label>
+        <form onSubmit={handleVerify} className="glass-card" style={{ padding: 28 }}>
+          <div style={{ marginBottom: 16 }}>
+            <label className="font-mono" style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--brass)", display: "block", marginBottom: 10 }}>VERIFICATION CODE</label>
             <Input
               type="text"
               inputMode="numeric"
@@ -87,11 +89,11 @@ function PhoneVerifyContent() {
               required
               disabled={loading}
               autoFocus
-              className="text-center text-2xl tracking-widest"
+              style={{ textAlign: "center", fontSize: 28, letterSpacing: "0.3em" }}
             />
           </div>
 
-          {error && <p className="text-sm text-destructive">{error}</p>}
+          {error && <p style={{ fontSize: 13, color: "var(--err)", marginBottom: 12 }}>{error}</p>}
 
           <Button type="submit" className="w-full" size="lg" disabled={loading || code.length < 6}>
             {loading ? "Verifying…" : "Verify"}
@@ -100,7 +102,7 @@ function PhoneVerifyContent() {
           <button
             type="button"
             onClick={() => router.push("/")}
-            className="w-full text-sm text-muted-foreground hover:text-foreground"
+            style={{ width: "100%", marginTop: 12, fontSize: 12, color: "var(--text-faint)", background: "none", border: "none", cursor: "pointer", padding: 8 }}
           >
             Use a different number
           </button>

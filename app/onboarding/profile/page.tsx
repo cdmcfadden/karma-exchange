@@ -61,23 +61,26 @@ export default function ProfileSetupPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-50 via-white to-rose-50 px-4 py-8">
-      <div className="w-full max-w-md">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-violet-700 mb-2">
+    <main style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", padding: "32px 16px" }}>
+      <div className="nebula-bg" style={{ opacity: 0.4 }} />
+      <div className="starfield" style={{ opacity: 0.5 }} />
+      <div style={{ width: "100%", maxWidth: 440, position: "relative", zIndex: 1 }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <h1 className="font-display" style={{ fontSize: 32, color: "var(--brass-bright)", fontStyle: "italic", margin: 0 }}>
             Set up your profile
           </h1>
-          <p className="text-sm text-muted-foreground">
+          <p style={{ fontSize: 13, color: "var(--text-dim)", marginTop: 8 }}>
             This is how other Karma Exchange members will see you.
           </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="space-y-4 bg-white p-6 rounded-xl shadow-sm border"
+          className="glass-card"
+          style={{ padding: 28 }}
         >
           <div>
-            <label className="text-sm font-medium mb-1 block">
+            <label className="font-mono" style={{ fontSize: 10, letterSpacing: "0.15em", color: "var(--text-dim)", display: "block", marginBottom: 6 }}>
               Display name *
             </label>
             <Input
@@ -93,7 +96,7 @@ export default function ProfileSetupPage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium mb-1 block">City</label>
+            <label className="font-mono" style={{ fontSize: 10, letterSpacing: "0.15em", color: "var(--text-dim)", display: "block", marginBottom: 6 }}>City</label>
             <Input
               type="text"
               placeholder="e.g., Seattle, WA"
@@ -105,7 +108,7 @@ export default function ProfileSetupPage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium mb-1 block">Birth year</label>
+            <label className="font-mono" style={{ fontSize: 10, letterSpacing: "0.15em", color: "var(--text-dim)", display: "block", marginBottom: 6 }}>Birth year</label>
             <Input
               type="number"
               placeholder="e.g., 1990"
@@ -121,7 +124,7 @@ export default function ProfileSetupPage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium mb-1 block">
+            <label className="font-mono" style={{ fontSize: 10, letterSpacing: "0.15em", color: "var(--text-dim)", display: "block", marginBottom: 6 }}>
               General availability
             </label>
             <Input
@@ -135,7 +138,7 @@ export default function ProfileSetupPage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium mb-1 block">Short bio</label>
+            <label className="font-mono" style={{ fontSize: 10, letterSpacing: "0.15em", color: "var(--text-dim)", display: "block", marginBottom: 6 }}>Short bio</label>
             <Textarea
               placeholder="A sentence or two about yourself..."
               value={bio}
@@ -146,7 +149,7 @@ export default function ProfileSetupPage() {
             />
           </div>
 
-          {error && <p className="text-sm text-destructive">{error}</p>}
+          {error && <p style={{ fontSize: 13, color: "var(--err)" }}>{error}</p>}
 
           <Button
             type="submit"

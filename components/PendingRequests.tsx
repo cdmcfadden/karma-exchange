@@ -3,8 +3,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { Bell, Check, X, MessageSquare } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { IconBell, IconCheck } from "./karma-icons";
+import { Check, X, MessageSquare } from "lucide-react";
 
 interface PendingSession {
   id: string;
@@ -145,10 +145,11 @@ export function PendingRequests({ userId }: { userId: string }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((p) => !p)}
-        className="relative text-muted-foreground hover:text-violet-600 transition"
+        className="relative transition"
+        style={{ color: "var(--text-dim)" }}
         title="Match requests"
       >
-        <Bell className="w-4.5 h-4.5" />
+        <IconBell size={18} />
         {pendingCount > 0 && (
           <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
             {pendingCount}
@@ -157,34 +158,34 @@ export function PendingRequests({ userId }: { userId: string }) {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-8 w-72 bg-white border border-border rounded-lg shadow-lg z-50 overflow-hidden">
-          <div className="px-3 py-2 border-b bg-slate-50">
-            <p className="text-xs font-semibold text-slate-700">
+        <div className="absolute right-0 top-8 w-72 glass-card shadow-lg shadow-black/40 z-50 overflow-hidden">
+          <div className="px-3 py-2" style={{ borderBottom: "1px solid rgba(232,212,168,0.08)", background: "rgba(0,0,0,0.3)" }}>
+            <p className="font-mono text-xs" style={{ color: "var(--brass)", letterSpacing: "0.15em" }}>
               Match Requests
             </p>
           </div>
           <div className="max-h-64 overflow-y-auto">
             {sessions.length === 0 ? (
-              <p className="p-4 text-xs text-muted-foreground text-center">
+              <p className="p-4 text-xs text-center" style={{ color: "var(--text-faint)" }}>
                 No requests yet.
               </p>
             ) : (
               sessions.map((s) => (
                 <div
                   key={s.id}
-                  className="px-3 py-2.5 border-b last:border-0 hover:bg-slate-50/50"
+                  className="px-3 py-2.5 hover:bg-[rgba(232,212,168,0.04)]"
+                  style={{ borderBottom: "1px solid rgba(232,212,168,0.06)" }}
                 >
                   <div className="flex items-center justify-between gap-2 mb-1">
                     <p className="text-sm font-medium truncate">
                       {s.receiver_name}
                     </p>
                     <span
-                      className={cn(
-                        "text-[10px] px-1.5 py-0.5 rounded-full font-medium shrink-0",
-                        s.status === "pending"
-                          ? "bg-amber-100 text-amber-700"
-                          : "bg-emerald-100 text-emerald-700",
-                      )}
+                      className="text-[10px] px-1.5 py-0.5 font-medium shrink-0 font-mono"
+                      style={{
+                        color: s.status === "pending" ? "var(--warn)" : "var(--ok)",
+                        letterSpacing: "0.1em",
+                      }}
                     >
                       {s.status === "pending" ? "Pending" : "Accepted"}
                     </span>

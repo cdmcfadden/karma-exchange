@@ -38,7 +38,7 @@ export default async function SessionPage({ params }: Props) {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="border-b bg-white px-4 md:px-6 py-2.5 flex items-center justify-between">
+      <div className="px-4 md:px-6 py-2.5 flex items-center justify-between" style={{ borderBottom: "1px solid rgba(232,212,168,0.1)", background: "rgba(5,3,8,0.5)" }}>
         <div>
           <p className="text-sm font-medium">
             Session with {partner?.display_name ?? "Partner"}

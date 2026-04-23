@@ -120,7 +120,7 @@ export function ValidationPanel({ userId }: { userId: string }) {
   return (
     <div className="flex flex-col gap-3 p-4 overflow-y-auto karma-scroll h-full">
       <div className="flex items-center gap-2 mb-1">
-        <ShieldCheck className="w-4 h-4 text-emerald-600" />
+        <ShieldCheck className="w-4 h-4 text-[var(--ok)]" />
         <h3 className="font-semibold text-sm">Validate your skills</h3>
       </div>
       <p className="text-xs text-muted-foreground leading-relaxed">

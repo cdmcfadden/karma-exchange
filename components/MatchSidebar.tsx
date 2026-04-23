@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Users, Sparkles, Bug, ChevronDown, ChevronUp } from "lucide-react";
+import { Users, Sparkles, Bug, ChevronUp } from "lucide-react";
+import { CosmicAvatar } from "./karma-primitives";
 import { cn, LEVEL_STYLES } from "@/lib/utils";
 import type { SkillLevel } from "@/lib/utils";
 import type { MatchCandidate } from "@/lib/matching";
@@ -89,12 +90,12 @@ export function MatchSidebar({ requestText, onSelectMatch }: MatchSidebarProps) 
 
   return (
     <div className="h-full flex flex-col">
-      <div className="px-4 py-3 border-b bg-white sticky top-0 z-10">
+      <div className="px-4 py-3 sticky top-0 z-10" style={{ borderBottom: "1px solid rgba(232,212,168,0.08)", background: "rgba(5,3,8,0.6)", backdropFilter: "blur(8px)" }}>
         <div className="flex items-center gap-2">
-          <Users className="w-4 h-4 text-violet-600" />
+          <Users className="w-4 h-4" style={{ color: "var(--brass)" }} />
           <h3 className="font-semibold text-sm">Recommended matches</h3>
           {loading && (
-            <div className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse ml-auto" />
+            <div className="w-1.5 h-1.5 rounded-full animate-pulse ml-auto" style={{ background: "var(--brass)" }} />
           )}
           {!loading && (
             <button
@@ -111,17 +112,18 @@ export function MatchSidebar({ requestText, onSelectMatch }: MatchSidebarProps) 
       <div className="flex-1 overflow-y-auto karma-scroll p-3 space-y-2">
         {/* Debug panel */}
         {showDebug && (
-          <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs space-y-2">
+          <div className="glass-card p-3 text-xs space-y-2">
             <button
               onClick={() => setShowDebug(false)}
-              className="flex items-center gap-1 font-semibold text-amber-800 w-full"
+              className="flex items-center gap-1 font-semibold w-full"
+              style={{ color: "var(--brass)" }}
             >
               <Bug className="w-3 h-3" />
               Debug Info
               <ChevronUp className="w-3 h-3 ml-auto" />
             </button>
 
-            <div className="space-y-1 text-amber-900">
+            <div className="space-y-1" style={{ color: "var(--text-dim)" }}>
               <p>
                 <span className="font-medium">Request text:</span>{" "}
                 {requestText.length < 8
@@ -226,30 +228,17 @@ export function MatchSidebar({ requestText, onSelectMatch }: MatchSidebarProps) 
             key={m.user_id}
             onClick={() => onSelectMatch?.(m)}
             className={cn(
-              "w-full text-left rounded-lg border border-border p-3 bg-white hover:border-violet-400 hover:shadow-sm transition-all cursor-pointer",
+              "w-full text-left p-3 glass-card hover:border-[var(--brass)] transition-all cursor-pointer",
               "animate-in fade-in slide-in-from-left-2",
             )}
             style={{ animationDelay: `${i * 50}ms` }}
           >
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center shrink-0">
-                {m.avatar_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={m.avatar_url}
-                    alt=""
-                    className="w-full h-full rounded-full object-cover"
-                  />
-                ) : (
-                  <span className="font-semibold text-violet-700">
-                    {m.display_name.slice(0, 1).toUpperCase()}
-                  </span>
-                )}
-              </div>
+              <CosmicAvatar name={m.display_name} size={42} avatarUrl={m.avatar_url} />
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
                   <p className="font-medium text-sm truncate">{m.display_name}</p>
-                  <span className="text-xs text-violet-600 font-semibold shrink-0">
+                  <span className="text-xs font-semibold shrink-0 font-display" style={{ color: "var(--brass-bright)", fontStyle: "italic" }}>
                     {Math.round(m.final_score * 100)}%
                   </span>
                 </div>

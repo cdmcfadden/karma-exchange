@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { formatKarma, cn } from "@/lib/utils";
-import { Coins, Trophy, ArrowRight, ArrowLeft } from "lucide-react";
+import { formatKarma } from "@/lib/utils";
+import { KarmaLogo, CosmicAvatar, KarmaBalance } from "./karma-primitives";
+import { IconBell, IconMessage } from "./karma-icons";
 import { PendingRequests } from "./PendingRequests";
 
 interface ProfileBarProps {
@@ -16,9 +17,9 @@ interface ProfileBarProps {
 }
 
 const RECIPROCITY_LABELS = {
-  green: { label: "Balanced", color: "bg-emerald-100 text-emerald-700" },
-  amber: { label: "Give back soon", color: "bg-amber-100 text-amber-700" },
-  red: { label: "Give to unlock", color: "bg-rose-100 text-rose-700" },
+  green: { label: "Balanced", color: "var(--ok)" },
+  amber: { label: "Give back", color: "var(--warn)" },
+  red: { label: "Locked", color: "var(--err)" },
 };
 
 export function ProfileBar({
@@ -32,87 +33,127 @@ export function ProfileBar({
   const pathname = usePathname();
   const isWheelhouse = pathname.startsWith("/app/wheelhouse");
   const isSession = pathname.startsWith("/app/session");
+
+  const tabs = [
+    { id: "pacers", label: "PACERS", href: "/app", active: !isWheelhouse && !isSession },
+    { id: "wheelhouse", label: "WHEELHOUSE", href: "/app/wheelhouse", active: isWheelhouse },
+  ];
+
   const r = RECIPROCITY_LABELS[reciprocityStatus];
 
-  const pageLabel = isWheelhouse
-    ? "Wheelhouse"
-    : isSession
-    ? "Session"
-    : "Suggested Pacers";
-
   return (
-    <header className="border-b bg-white px-4 md:px-6 py-2.5 flex items-center justify-between gap-3 sticky top-0 z-10">
-      {/* Left: brand + page label + switcher */}
-      <div className="flex items-center gap-3 min-w-0">
-        <Link href="/app" className="shrink-0">
-          <span className="text-lg font-bold text-violet-700 tracking-tight">
-            Karma Exchange
-          </span>
+    <header
+      style={{
+        borderBottom: "1px solid rgba(232,212,168,0.1)",
+        background: "rgba(5,3,8,0.6)",
+        backdropFilter: "blur(8px)",
+        padding: "0 24px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        height: 56,
+        position: "sticky",
+        top: 0,
+        zIndex: 10,
+      }}
+    >
+      {/* Left: logo + tabs */}
+      <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+        <Link href="/app" style={{ textDecoration: "none" }}>
+          <KarmaLogo size={20} />
         </Link>
-        <span className="text-slate-300 hidden sm:inline">|</span>
-        <span className="text-sm font-medium text-slate-600 hidden sm:inline">
-          {pageLabel}
-        </span>
+
         {!isSession && (
-          <Link
-            href={isWheelhouse ? "/app" : "/app/wheelhouse"}
-            className="flex items-center gap-1 text-xs text-violet-600 hover:text-violet-800 transition shrink-0"
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+              padding: 3,
+              border: "1px solid rgba(232,212,168,0.12)",
+              background: "rgba(0,0,0,0.3)",
+            }}
           >
-            {isWheelhouse ? (
-              <>
-                Pacers <ArrowRight className="w-3 h-3" />
-              </>
-            ) : (
-              <>
-                <ArrowLeft className="w-3 h-3" /> Wheelhouse
-              </>
-            )}
-          </Link>
+            {tabs.map((t) => (
+              <Link
+                key={t.id}
+                href={t.href}
+                style={{
+                  padding: "6px 16px",
+                  fontSize: 11,
+                  letterSpacing: "0.1em",
+                  fontWeight: t.active ? 600 : 400,
+                  background: t.active
+                    ? "linear-gradient(180deg, var(--brass-bright), var(--brass-deep))"
+                    : "transparent",
+                  color: t.active ? "var(--void)" : "var(--text-dim)",
+                  textDecoration: "none",
+                  transition: "all 0.2s",
+                  fontFamily: "inherit",
+                }}
+              >
+                {t.label}
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {isSession && (
+          <span
+            className="font-mono"
+            style={{
+              fontSize: 11,
+              letterSpacing: "0.2em",
+              color: "var(--brass)",
+            }}
+          >
+            LIVE SESSION
+          </span>
         )}
       </div>
 
-      {/* Right: notifications + karma + rank + user */}
-      <div className="flex items-center gap-3 shrink-0">
+      {/* Right: notifications + karma + rank + avatar */}
+      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <PendingRequests userId={userId} />
-        <Link
-          href="/app/karma"
-          className="flex items-center gap-1 text-sm font-semibold text-violet-700"
-          title="Karma balance"
-        >
-          <Coins className="w-4 h-4" />
-          <span className="hidden sm:inline">{formatKarma(karmaPoints)}</span>
-        </Link>
+        <KarmaBalance amount={karmaPoints} size="sm" />
         <div
-          className="flex items-center gap-1 text-sm text-muted-foreground"
-          title="Karma rank"
+          className="font-mono"
+          style={{
+            fontSize: 11,
+            color: "var(--text-faint)",
+            letterSpacing: "0.1em",
+            display: "flex",
+            alignItems: "center",
+            gap: 4,
+          }}
         >
-          <Trophy className="w-4 h-4" />
-          <span className="hidden sm:inline">{formatKarma(karmaRank)}</span>
+          <span style={{ color: "var(--text-dim)" }}>
+            #{formatKarma(karmaRank)}
+          </span>
         </div>
-        <div className="flex items-center gap-2 ml-1">
-          <div className="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center overflow-hidden shrink-0">
-            {avatarUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={avatarUrl}
-                alt=""
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <span className="font-semibold text-violet-700 text-sm">
-                {displayName.slice(0, 1).toUpperCase()}
-              </span>
-            )}
-          </div>
-          <div className="hidden md:block min-w-0">
-            <p className="font-medium truncate text-xs leading-tight">
-              {displayName}
-            </p>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <CosmicAvatar
+            name={displayName}
+            size={32}
+            avatarUrl={avatarUrl}
+          />
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <span
-              className={cn(
-                "text-[9px] px-1 py-0.5 rounded-full font-medium inline-block leading-tight",
-                r.color,
-              )}
+              style={{
+                fontSize: 12,
+                color: "var(--text)",
+                fontWeight: 500,
+              }}
+            >
+              {displayName}
+            </span>
+            <span
+              style={{
+                fontSize: 9,
+                color: r.color,
+                letterSpacing: "0.1em",
+                fontFamily: "'JetBrains Mono', monospace",
+              }}
             >
               {r.label}
             </span>
