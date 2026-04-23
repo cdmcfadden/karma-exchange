@@ -144,13 +144,13 @@ export function ProfileModal({
       <DialogContent className="max-w-md max-h-[85vh] overflow-y-auto">
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-[var(--brass-bright)]" />
+            <Loader2 className="w-6 h-6 animate-spin text-violet-600" />
           </div>
         ) : profile ? (
           <>
             <DialogHeader>
               <div className="flex items-center gap-3">
-                <div className="w-14 h-14 rounded-full bg-[var(--void-3)] flex items-center justify-center overflow-hidden shrink-0">
+                <div className="w-14 h-14 rounded-full bg-violet-100 flex items-center justify-center overflow-hidden shrink-0">
                   {profile.avatar_url ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -159,7 +159,7 @@ export function ProfileModal({
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <span className="font-bold text-[var(--brass)] text-xl">
+                    <span className="font-bold text-violet-700 text-xl">
                       {profile.display_name.slice(0, 1).toUpperCase()}
                     </span>
                   )}
@@ -199,7 +199,7 @@ export function ProfileModal({
 
             {/* Stats */}
             <div className="flex items-center gap-4 mt-3 text-sm">
-              <span className="flex items-center gap-1 text-[var(--brass)] font-semibold">
+              <span className="flex items-center gap-1 text-violet-700 font-semibold">
                 <Coins className="w-4 h-4" />
                 {formatKarma(profile.karma_points)}
               </span>
@@ -211,7 +211,7 @@ export function ProfileModal({
 
             {/* Match context */}
             {matchContext?.why_match && (
-              <p className="text-sm text-[var(--brass)] italic mt-3 bg-[rgba(212,162,74,0.08)] rounded-lg px-3 py-2">
+              <p className="text-sm text-violet-700 italic mt-3 bg-violet-50 rounded-lg px-3 py-2">
                 &ldquo;{matchContext.why_match}&rdquo;
               </p>
             )}
@@ -254,7 +254,7 @@ export function ProfileModal({
             <div className="mt-5 border-t pt-4">
               {requestSent ? (
                 <div className="text-center py-2">
-                  <p className="text-sm font-medium text-[var(--ok)]">
+                  <p className="text-sm font-medium text-emerald-700">
                     Request sent!
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
@@ -277,14 +277,14 @@ export function ProfileModal({
                         disabled={requesting}
                       >
                         <span>{st.label}</span>
-                        <span className="text-[var(--brass-bright)] font-semibold">
+                        <span className="text-violet-600 font-semibold">
                           {st.cost} karma
                         </span>
                       </Button>
                     ))}
                   </div>
                   {error && (
-                    <p className="text-xs text-[var(--err)] mt-2">{error}</p>
+                    <p className="text-xs text-red-600 mt-2">{error}</p>
                   )}
                 </>
               )}

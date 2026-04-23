@@ -250,7 +250,7 @@ export function WheelhousePreview({ userId }: { userId: string }) {
     <div className="flex flex-col gap-4 p-4 overflow-y-auto karma-scroll h-full">
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <Sparkles className="w-4 h-4 text-[var(--brass)]" />
+          <Sparkles className="w-4 h-4 text-violet-600" />
           <h3 className="font-semibold text-sm">Your Wheelhouse</h3>
           <span className="text-xs text-muted-foreground">
             ({skills.length})
@@ -279,12 +279,12 @@ export function WheelhousePreview({ userId }: { userId: string }) {
                 return (
                   <div
                     key={category}
-                    className="rounded-lg glass-card"
+                    className="rounded-lg border border-border bg-white"
                   >
                     {/* Category header */}
                     <button
                       onClick={() => toggleCategory(category)}
-                      className="w-full flex items-center gap-2 p-3 hover:bg-[rgba(232,212,168,0.04)] transition"
+                      className="w-full flex items-center gap-2 p-3 hover:bg-slate-50/50 transition"
                     >
                       {isExpanded ? (
                         <ChevronDown className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
@@ -309,7 +309,7 @@ export function WheelhousePreview({ userId }: { userId: string }) {
 
                     {/* Expanded skill cards */}
                     {isExpanded && (
-                      <div className="border-t border-[var(--glass-edge)] px-3 pb-3 pt-2 space-y-1.5">
+                      <div className="border-t border-border px-3 pb-3 pt-2 space-y-1.5">
                         {catSkills.map((s) => {
                           const displayLevel = effectiveLevel(s);
                           const sLevel = LEVEL_STYLES[displayLevel];
@@ -333,7 +333,7 @@ export function WheelhousePreview({ userId }: { userId: string }) {
                           return (
                             <div
                               key={s.id}
-                              className="rounded-md px-2.5 py-2 bg-[rgba(232,212,168,0.04)]"
+                              className="rounded-md bg-slate-50 px-2.5 py-2"
                               title={tooltip}
                             >
                               <div className="flex items-start gap-2">
@@ -422,7 +422,7 @@ export function WheelhousePreview({ userId }: { userId: string }) {
                                           "text-[10px] px-1.5 py-0.5 rounded-full font-medium transition",
                                           isActive
                                             ? cn(ls.color, "ring-2 ring-violet-400")
-                                            : "bg-[var(--glass)] text-[var(--text-faint)] hover:bg-[rgba(232,212,168,0.08)]",
+                                            : "bg-slate-100 text-slate-500 hover:bg-slate-200",
                                         )}
                                       >
                                         {ls.label}
@@ -435,7 +435,7 @@ export function WheelhousePreview({ userId }: { userId: string }) {
                                         e.stopPropagation();
                                         void setUserLevel(s.id, null);
                                       }}
-                                      className="text-[10px] text-[var(--brass)] hover:text-[var(--brass-bright)] flex items-center gap-0.5 ml-1"
+                                      className="text-[10px] text-violet-600 hover:text-violet-800 flex items-center gap-0.5 ml-1"
                                       title={`Reset to AI recommendation: ${LEVEL_STYLES[s.level].label}`}
                                     >
                                       <RotateCcw className="w-2.5 h-2.5" />
@@ -460,7 +460,7 @@ export function WheelhousePreview({ userId }: { userId: string }) {
       {seeks.length > 0 && (
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <Target className="w-4 h-4 text-[var(--nebula-magenta)]" />
+            <Target className="w-4 h-4 text-rose-600" />
             <h3 className="font-semibold text-sm">You want to learn</h3>
             <span className="text-xs text-muted-foreground">
               ({seeks.length})
@@ -470,7 +470,7 @@ export function WheelhousePreview({ userId }: { userId: string }) {
             {seeks.map((s) => (
               <div
                 key={s.id}
-                className="rounded-lg p-3 glass-card border-[rgba(201,123,168,0.2)] animate-in fade-in slide-in-from-left-2"
+                className="rounded-lg border border-rose-100 p-3 bg-rose-50/50 animate-in fade-in slide-in-from-left-2"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>

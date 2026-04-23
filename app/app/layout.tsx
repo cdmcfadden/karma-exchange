@@ -21,7 +21,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   if (!profile.wheelhouse_completed_at) redirect("/onboarding/wheelhouse");
 
   return (
-    <div className="h-screen flex flex-col" style={{ background: "var(--void)" }}>
+    <div className="h-screen flex flex-col bg-slate-50">
       <ProfileBar
         displayName={profile.display_name}
         avatarUrl={profile.avatar_url}

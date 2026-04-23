@@ -52,12 +52,12 @@ const STATUS_CONFIG: Record<
   string,
   { label: string; color: string; icon: typeof CheckCircle2 }
 > = {
-  linked: { label: "Linked", color: "text-[var(--text-faint)]", icon: Link2 },
-  verifying: { label: "In process...", color: "text-[var(--warn)]", icon: Loader2 },
-  verified: { label: "Completed", color: "text-[var(--ok)]", icon: CheckCircle2 },
-  partial: { label: "Completed", color: "text-[var(--ok)]", icon: CheckCircle2 },
-  failed: { label: "Failed", color: "text-[var(--err)]", icon: XCircle },
-  inaccessible: { label: "Inaccessible", color: "text-[var(--err)]", icon: Lock },
+  linked: { label: "Linked", color: "text-slate-500", icon: Link2 },
+  verifying: { label: "In process...", color: "text-amber-600", icon: Loader2 },
+  verified: { label: "Completed", color: "text-emerald-600", icon: CheckCircle2 },
+  partial: { label: "Completed", color: "text-emerald-600", icon: CheckCircle2 },
+  failed: { label: "Failed", color: "text-red-600", icon: XCircle },
+  inaccessible: { label: "Inaccessible", color: "text-red-500", icon: Lock },
 };
 
 export function SiteCard({ site, matchedSkills, validation }: Props) {
@@ -117,7 +117,7 @@ export function SiteCard({ site, matchedSkills, validation }: Props) {
   }
 
   return (
-    <div className="p-3 glass-card">
+    <div className="rounded-lg border border-border p-3 bg-white">
       {/* Header row */}
       <div className="flex items-start justify-between gap-2 mb-1">
         <div className="min-w-0">
@@ -127,7 +127,7 @@ export function SiteCard({ site, matchedSkills, validation }: Props) {
               href={site.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-[var(--brass)]"
+              className="text-muted-foreground hover:text-violet-600"
             >
               <ExternalLink className="w-3 h-3" />
             </a>
@@ -156,7 +156,7 @@ export function SiteCard({ site, matchedSkills, validation }: Props) {
 
       {/* Matched skills */}
       {matchedSkills.length > 0 && (
-        <p className="text-[11px] text-[var(--brass)] mb-2">
+        <p className="text-[11px] text-violet-600 mb-2">
           Relevant for: {matchedSkills.slice(0, 3).join(", ")}
           {matchedSkills.length > 3 && ` +${matchedSkills.length - 3}`}
         </p>
@@ -164,7 +164,7 @@ export function SiteCard({ site, matchedSkills, validation }: Props) {
 
       {/* Auth required hint (shown before any link attempt) */}
       {!validation && site.auth_required && (
-        <p className="text-[11px] text-[var(--warn)] mb-2 flex items-center gap-1">
+        <p className="text-[11px] text-amber-600 mb-2 flex items-center gap-1">
           <Lock className="w-3 h-3" />
           Requires authentication — scraping may be limited.
         </p>
@@ -241,7 +241,7 @@ export function SiteCard({ site, matchedSkills, validation }: Props) {
 
           {/* Error message */}
           {validation.error_message && status !== "inaccessible" && (
-            <p className="text-[11px] text-[var(--err)] mt-1">
+            <p className="text-[11px] text-red-600 mt-1">
               {validation.error_message}
             </p>
           )}
@@ -258,7 +258,7 @@ export function SiteCard({ site, matchedSkills, validation }: Props) {
       )}
 
       {error && (
-        <p className="text-[11px] text-[var(--err)] mt-1">{error}</p>
+        <p className="text-[11px] text-red-600 mt-1">{error}</p>
       )}
     </div>
   );

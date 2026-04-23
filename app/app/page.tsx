@@ -16,7 +16,7 @@ export default function AppHome() {
   return (
     <div className="h-full flex overflow-hidden">
       {/* Left: Suggested Pacers */}
-      <aside className="hidden md:block w-72 lg:w-80 overflow-hidden" style={{ borderRight: "1px solid rgba(232,212,168,0.08)", background: "rgba(232,212,168,0.02)" }}>
+      <aside className="hidden md:block w-72 lg:w-80 border-r bg-white overflow-hidden">
         <MatchSidebar
           requestText={requestText}
           onSelectMatch={setSelectedMatch}
@@ -29,7 +29,7 @@ export default function AppHome() {
       </div>
 
       {/* Right: hints */}
-      <aside className="hidden lg:block w-72 overflow-hidden" style={{ borderLeft: "1px solid rgba(232,212,168,0.08)", background: "rgba(155,123,184,0.02)" }}>
+      <aside className="hidden lg:block w-72 border-l bg-white overflow-hidden">
         <HintsSidebar requestText={requestText} />
       </aside>
 

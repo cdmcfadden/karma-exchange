@@ -5,19 +5,15 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "btn-brass",
-        secondary:
-          "border border-[var(--glass-edge)] bg-[var(--glass)] text-[var(--text)] hover:border-[var(--brass)] hover:text-[var(--brass-bright)]",
-        outline:
-          "btn-ghost",
-        ghost:
-          "bg-transparent text-[var(--text-dim)] hover:text-[var(--brass-bright)] hover:bg-[rgba(232,212,168,0.06)]",
-        destructive:
-          "border border-[var(--err)] bg-[rgba(201,123,168,0.1)] text-[var(--err)] hover:bg-[rgba(201,123,168,0.2)]",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
       },
       size: {
         default: "h-10 px-4 py-2",

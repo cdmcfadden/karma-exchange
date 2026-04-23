@@ -129,15 +129,15 @@ export function SessionChat({
                   className={cn(
                     "max-w-[80%] rounded-2xl px-4 py-2.5 text-[15px] leading-relaxed",
                     isMine
-                      ? "brass-gradient text-[var(--void)]"
-                      : "glass-card",
+                      ? "bg-violet-600 text-white"
+                      : "bg-slate-100 text-slate-900",
                   )}
                 >
                   {m.content}
                   <p
                     className={cn(
                       "text-[10px] mt-1",
-                      isMine ? "text-[var(--brass-shadow)]" : "text-[var(--text-faint)]",
+                      isMine ? "text-violet-200" : "text-muted-foreground",
                     )}
                   >
                     {new Date(m.created_at).toLocaleTimeString([], {
@@ -153,7 +153,7 @@ export function SessionChat({
         </div>
       </div>
 
-      <div className="px-4 md:px-6 py-3" style={{ borderTop: "1px solid rgba(232,212,168,0.08)", background: "rgba(5,3,8,0.5)" }}>
+      <div className="border-t bg-white px-4 md:px-6 py-3">
         <div className="max-w-2xl mx-auto flex gap-2">
           <Textarea
             value={input}

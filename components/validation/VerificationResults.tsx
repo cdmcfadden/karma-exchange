@@ -28,20 +28,20 @@ const VERDICT_CONFIG = {
   supported: {
     icon: CheckCircle2,
     label: "Supported",
-    color: "text-[var(--ok)]",
-    bg: "bg-[rgba(127,184,176,0.08)]",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
   },
   partial: {
     icon: AlertCircle,
     label: "Partial",
-    color: "text-[var(--warn)]",
-    bg: "bg-[rgba(232,188,106,0.08)]",
+    color: "text-amber-600",
+    bg: "bg-amber-50",
   },
   unsupported: {
     icon: MinusCircle,
     label: "Not found",
-    color: "text-[var(--text-faint)]",
-    bg: "bg-[rgba(232,212,168,0.04)]",
+    color: "text-slate-400",
+    bg: "bg-slate-50",
   },
 };
 
@@ -93,7 +93,7 @@ export function VerificationResults({
       {discoveredSkills && discoveredSkills.length > 0 && (
         <>
           <div className="border-t border-border pt-2 mt-2">
-            <p className="text-[11px] font-semibold text-[var(--nebula-violet)] mb-1.5 flex items-center gap-1">
+            <p className="text-[11px] font-semibold text-violet-700 mb-1.5 flex items-center gap-1">
               <Plus className="w-3 h-3" />
               Skills added to your wheelhouse
             </p>
@@ -101,12 +101,12 @@ export function VerificationResults({
           {discoveredSkills.map((ds) => (
             <div
               key={ds.skill_name}
-              className="rounded-md p-2 text-xs bg-[rgba(155,123,184,0.08)]"
+              className="rounded-md p-2 text-xs bg-violet-50"
             >
               <div className="flex items-center gap-1.5 mb-0.5">
-                <Plus className="w-3.5 h-3.5 shrink-0 text-[var(--brass)]" />
+                <Plus className="w-3.5 h-3.5 shrink-0 text-violet-600" />
                 <span className="font-medium">{ds.skill_name}</span>
-                <span className="ml-auto text-[10px] text-[var(--brass)] capitalize">
+                <span className="ml-auto text-[10px] text-violet-600 capitalize">
                   {ds.level}
                 </span>
               </div>

@@ -4,221 +4,59 @@
 
 @layer base {
   :root {
-    /* Deep space */
-    --void: #050308;
-    --void-2: #0b0710;
-    --void-3: #120b1a;
-    --ink: #1a1225;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.75rem;
+  }
 
-    /* Brass & glass */
-    --brass: #d4a24a;
-    --brass-bright: #e8bc6a;
-    --brass-deep: #8b5a2b;
-    --brass-shadow: #4a3018;
-    --glass: rgba(232, 212, 168, 0.08);
-    --glass-edge: rgba(232, 212, 168, 0.22);
-
-    /* Sand */
-    --sand: #e8d4a8;
-    --sand-dim: #b8a078;
-    --sand-dust: rgba(232, 212, 168, 0.55);
-
-    /* Nebula */
-    --nebula-teal: #7fb8b0;
-    --nebula-violet: #9b7bb8;
-    --nebula-magenta: #c97ba8;
-    --nebula-ember: #d97a3a;
-
-    /* Text */
-    --text: #f4ead6;
-    --text-dim: #a89a7e;
-    --text-faint: #6b5f4a;
-
-    /* Status */
-    --ok: #7fb8b0;
-    --warn: #e8bc6a;
-    --err: #c97ba8;
-
-    /* Tailwind compat tokens */
-    --background: 0 0% 2%;
-    --foreground: 40 40% 92%;
-    --muted: 270 20% 10%;
-    --muted-foreground: 35 20% 55%;
-    --border: 35 20% 16%;
-    --input: 35 20% 16%;
-    --primary: 40 60% 55%;
-    --primary-foreground: 0 0% 2%;
-    --secondary: 270 20% 10%;
-    --secondary-foreground: 40 40% 92%;
-    --accent: 270 20% 10%;
-    --accent-foreground: 40 40% 92%;
-    --destructive: 330 40% 55%;
-    --destructive-foreground: 40 40% 92%;
-    --ring: 40 60% 55%;
-    --radius: 2px;
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 263.4 70% 50.4%;
   }
 
   * {
     @apply border-border;
-    box-sizing: border-box;
   }
   body {
-    background: var(--void);
-    color: var(--text);
+    @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    -webkit-font-smoothing: antialiased;
   }
 }
 
-/* === Typography === */
-.font-display { font-family: 'Fraunces', 'Times New Roman', serif; font-weight: 400; letter-spacing: -0.01em; }
-.font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
-
-/* === Starfield backgrounds === */
-.starfield {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(1.5px 1.5px at 20% 30%, var(--sand) 50%, transparent),
-    radial-gradient(1px 1px at 80% 15%, var(--sand) 50%, transparent),
-    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.6) 50%, transparent),
-    radial-gradient(1.5px 1.5px at 65% 45%, var(--brass-bright) 50%, transparent),
-    radial-gradient(0.8px 0.8px at 15% 85%, rgba(255,255,255,0.8) 50%, transparent),
-    radial-gradient(1px 1px at 90% 60%, var(--nebula-teal) 50%, transparent),
-    radial-gradient(1.2px 1.2px at 55% 90%, var(--sand) 50%, transparent),
-    radial-gradient(0.8px 0.8px at 30% 50%, rgba(255,255,255,0.5) 50%, transparent),
-    radial-gradient(1px 1px at 75% 80%, var(--sand-dim) 50%, transparent),
-    radial-gradient(0.8px 0.8px at 10% 40%, rgba(255,255,255,0.7) 50%, transparent);
-  pointer-events: none;
+/* Custom scrollbar for sidebars */
+.karma-scroll::-webkit-scrollbar {
+  width: 6px;
 }
-
-.nebula-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 40% at 30% 35%, rgba(201, 122, 58, 0.28), transparent 60%),
-    radial-gradient(ellipse 50% 60% at 70% 55%, rgba(155, 123, 184, 0.22), transparent 65%),
-    radial-gradient(ellipse 40% 30% at 55% 25%, rgba(127, 184, 176, 0.18), transparent 70%),
-    radial-gradient(ellipse 70% 50% at 50% 85%, rgba(217, 122, 58, 0.12), transparent 60%);
-  pointer-events: none;
-}
-
-/* === Brass treatments === */
-.brass-gradient {
-  background: linear-gradient(180deg, var(--brass-bright) 0%, var(--brass) 40%, var(--brass-deep) 100%);
-}
-.brass-text {
-  background: linear-gradient(180deg, var(--brass-bright) 0%, var(--brass) 50%, var(--brass-deep) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* === Glass card === */
-.glass-card {
-  background: linear-gradient(180deg, rgba(232,212,168,0.06), rgba(232,212,168,0.02));
-  border: 1px solid var(--glass-edge);
-  backdrop-filter: blur(12px);
-  border-radius: 2px;
-}
-
-/* === Hairline ornaments === */
-.hairline {
-  background: linear-gradient(90deg, transparent, var(--brass) 20%, var(--brass) 80%, transparent);
-  height: 1px;
-}
-
-/* === Buttons === */
-.btn-brass {
-  background: linear-gradient(180deg, var(--brass-bright), var(--brass) 50%, var(--brass-deep));
-  color: var(--void);
-  border: 1px solid var(--brass-deep);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 10px 20px;
-  border-radius: 2px;
-  cursor: pointer;
-  box-shadow: 0 0 0 1px rgba(232,188,106,0.15), 0 4px 20px rgba(212,162,74,0.25);
-  transition: all 0.2s;
-  font-family: inherit;
-  font-size: 13px;
-}
-.btn-brass:hover { filter: brightness(1.1); box-shadow: 0 0 20px rgba(232,188,106,0.4); }
-.btn-brass:disabled { opacity: 0.5; cursor: not-allowed; filter: none; }
-
-.btn-ghost {
+.karma-scroll::-webkit-scrollbar-track {
   background: transparent;
-  color: var(--brass);
-  border: 1px solid var(--glass-edge);
-  padding: 10px 20px;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: inherit;
-  font-size: 13px;
 }
-.btn-ghost:hover { border-color: var(--brass); color: var(--brass-bright); }
-
-/* === Cosmic input === */
-input.cosmic-input, textarea.cosmic-input {
-  background: rgba(0,0,0,0.4);
-  border: 1px solid var(--glass-edge);
-  color: var(--text);
-  padding: 12px 16px;
-  border-radius: 2px;
-  font-family: inherit;
-  font-size: 15px;
-  width: 100%;
-  outline: none;
-  transition: border-color 0.2s;
-  resize: none;
+.karma-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
 }
-input.cosmic-input:focus, textarea.cosmic-input:focus { border-color: var(--brass); }
-input.cosmic-input::placeholder, textarea.cosmic-input::placeholder { color: var(--text-faint); }
-
-/* === Ornamental corners === */
-.ornament-corner {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: var(--brass);
-}
-.ornament-tl { top: 0; left: 0; border-top: 1px solid; border-left: 1px solid; }
-.ornament-tr { top: 0; right: 0; border-top: 1px solid; border-right: 1px solid; }
-.ornament-bl { bottom: 0; left: 0; border-bottom: 1px solid; border-left: 1px solid; }
-.ornament-br { bottom: 0; right: 0; border-bottom: 1px solid; border-right: 1px solid; }
-
-/* === Animations === */
-@keyframes fall {
-  0% { transform: translateY(-8px); opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { transform: translateY(60px); opacity: 0; }
-}
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.3); }
-}
-@keyframes drift {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(3px, -4px); }
-  100% { transform: translate(0, 0); }
-}
-@keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-@keyframes shimmer {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-/* === Scrollbar === */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--void-2); }
-::-webkit-scrollbar-thumb { background: var(--brass-shadow); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--brass-deep); }
-
-.karma-scroll::-webkit-scrollbar { width: 6px; }
-.karma-scroll::-webkit-scrollbar-track { background: transparent; }
-.karma-scroll::-webkit-scrollbar-thumb { background: var(--brass-shadow); border-radius: 3px; }

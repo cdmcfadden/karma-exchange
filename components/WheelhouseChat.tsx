@@ -140,10 +140,10 @@ export function WheelhouseChat({ userId }: { userId: string }) {
                 className={cn(
                   "max-w-[85%] rounded-2xl px-4 py-3 text-[15px] leading-relaxed",
                   m.isError
-                    ? "border border-[var(--err)]"
+                    ? "bg-red-50 text-red-900 border border-red-200"
                     : m.role === "user"
-                    ? "brass-gradient text-[var(--void)]"
-                    : "glass-card",
+                    ? "bg-violet-600 text-white"
+                    : "bg-slate-100 text-slate-900",
                 )}
               >
                 {m.content || (streaming && i === messages.length - 1 ? (
@@ -156,7 +156,7 @@ export function WheelhouseChat({ userId }: { userId: string }) {
         </div>
       </div>
 
-      <div className="px-4 md:px-8 py-4" style={{ borderTop: "1px solid rgba(232,212,168,0.08)", background: "rgba(5,3,8,0.5)" }}>
+      <div className="border-t bg-white px-4 md:px-8 py-4">
         <div className="max-w-2xl mx-auto">
           <div className="flex gap-2">
             <Textarea

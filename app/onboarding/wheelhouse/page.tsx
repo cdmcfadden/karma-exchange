@@ -24,32 +24,32 @@ export default async function WheelhouseBuilderPage() {
   if (profile.wheelhouse_completed_at) redirect("/app/wheelhouse");
 
   return (
-    <div className="h-screen flex flex-col" style={{ background: "var(--void)" }}>
-      <header style={{ borderBottom: "1px solid rgba(232,212,168,0.1)", background: "rgba(5,3,8,0.6)", backdropFilter: "blur(8px)", padding: "12px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
-        <div>
-          <h1 className="font-display" style={{ fontSize: 22, color: "var(--brass-bright)", fontStyle: "italic", margin: 0 }}>
+    <div className="h-screen flex flex-col bg-white">
+      <header className="border-b bg-white px-4 md:px-8 py-3 flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          <h1 className="text-xl font-bold text-violet-700 truncate">
             Build your Wheelhouse
           </h1>
-          <p className="font-mono" style={{ fontSize: 10, color: "var(--text-faint)", letterSpacing: "0.15em", marginTop: 4 }}>
-            SHARE WHAT YOU KNOW · WE&apos;LL EXTRACT YOUR SKILLS
+          <p className="text-xs text-muted-foreground truncate">
+            Share what you're good at. We'll extract your skills as you go.
           </p>
         </div>
-        <div style={{ fontSize: 13, color: "var(--text-dim)" }}>
-          <strong style={{ color: "var(--sand)" }}>{profile.display_name}</strong>
+        <div className="text-sm text-muted-foreground shrink-0">
+          Hi, <strong>{profile.display_name}</strong>
         </div>
       </header>
 
       <div className="flex-1 flex overflow-hidden">
         {/* Preview: left sidebar */}
-        <aside className="hidden md:block w-80 overflow-hidden" style={{ background: "rgba(232,212,168,0.03)", borderRight: "1px solid rgba(232,212,168,0.08)" }}>
+        <aside className="hidden md:block w-80 bg-slate-50/60 border-r overflow-hidden">
           <WheelhousePreview userId={user.id} />
         </aside>
         {/* Chat: center */}
-        <div className="flex-1 flex flex-col min-w-0 overflow-hidden" style={{ borderRight: "1px solid rgba(232,212,168,0.08)" }}>
+        <div className="flex-1 flex flex-col min-w-0 border-r overflow-hidden">
           <WheelhouseChat userId={user.id} />
         </div>
         {/* Validation suggestions: right sidebar */}
-        <aside className="hidden lg:block w-80 overflow-hidden" style={{ background: "rgba(127,184,176,0.03)" }}>
+        <aside className="hidden lg:block w-80 bg-emerald-50/40 overflow-hidden">
           <ValidationPanel userId={user.id} />
         </aside>
       </div>
