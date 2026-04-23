@@ -115,9 +115,7 @@ export function ProfileBar({
       {/* Right: notifications + karma + rank + avatar */}
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <PendingRequests userId={userId} />
-        <Link href="/app/karma" style={{ textDecoration: "none" }}>
-          <KarmaBalance amount={karmaPoints} size="sm" />
-        </Link>
+        <KarmaBalance amount={karmaPoints} size="sm" />
         <div
           className="font-mono"
           style={{
@@ -133,10 +131,7 @@ export function ProfileBar({
             #{formatKarma(karmaRank)}
           </span>
         </div>
-        <Link
-          href="/app/karma"
-          style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}
-        >
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <CosmicAvatar
             name={displayName}
             size={32}
@@ -163,7 +158,7 @@ export function ProfileBar({
               {r.label}
             </span>
           </div>
-        </Link>
+        </div>
       </div>
     </header>
   );
